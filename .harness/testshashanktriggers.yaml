@@ -1,0 +1,36 @@
+pipeline:
+  name: test-shashank-triggers
+  identifier: testshashanktriggers
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: hello
+        identifier: hello
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Chaos
+                  name: Chaos_1
+                  identifier: Chaos_1
+                  spec:
+                    experimentRef: 823dd580-8530-4bfe-a0fe-815727c81eaa
+                    expectedResilienceScore: 100
+              - step:
+                  type: Chaos
+                  name: Chaos_2
+                  identifier: Chaos_2
+                  spec:
+                    experimentRef: a4808543-0caa-4470-a514-bf2219441162
+                    expectedResilienceScore: 100
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: Ignore
