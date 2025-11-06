@@ -34,3 +34,9 @@ pipeline:
                 - AllErrors
               action:
                 type: Ignore
+  variables:
+    - name: namespace
+      type: String
+      description: ""
+      required: false
+      value: <+trigger.payload.namespace>
