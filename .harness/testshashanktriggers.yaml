@@ -73,3 +73,8 @@ pipeline:
       description: ""
       required: false
       value: <+trigger.payload.namespace>
+    - name: ORG_ID
+      type: String
+      description: ""
+      required: false
+      value: <+trigger.payload.orgId>
