@@ -27,6 +27,39 @@ pipeline:
                   spec:
                     experimentRef: a4808543-0caa-4470-a514-bf2219441162
                     expectedResilienceScore: 100
+              - step:
+                  type: Container
+                  name: Container_1
+                  identifier: Container_1
+                  spec:
+                    connectorRef: <+input>
+                    image: <+input>
+                    command: echo
+                    shell: Sh
+                    infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                        connectorRef: <+input>
+                        namespace: <+input>
+                        resources:
+                          limits:
+                            cpu: "0.5"
+                            memory: 500Mi
+                        annotations: {}
+                        labels: {}
+                        containerSecurityContext:
+                          capabilities:
+                            drop: []
+                            add: []
+                        nodeSelector: {}
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths: []
+                    outputVariables: []
+                    envVariables:
+                      ORG_ID: <+pipeline.ORG_ID>
+                  timeout: <+input>
         tags: {}
         failureStrategies:
           - onFailure:
